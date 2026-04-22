@@ -1,0 +1,143 @@
+[0m08:49:15.812407 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105942f90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107417fe0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1075aa690>]}
+
+
+============================== 08:49:15.815497 | 3b9b45d2-935d-4a67-8ca5-41b679e5f333 ==============================
+[0m08:49:15.815497 [info ] [MainThread]: Running with dbt=1.11.6
+[0m08:49:15.815847 [debug] [MainThread]: running dbt with arguments {'log_path': 'logs', 'log_format': 'default', 'partial_parse': 'True', 'log_cache_events': 'False', 'invocation_command': 'dbt init hamport', 'use_colors': 'True', 'cache_selected_only': 'False', 'debug': 'False', 'write_json': 'True', 'static_parser': 'True', 'empty': 'None', 'indirect_selection': 'eager', 'introspect': 'True', 'use_experimental_parser': 'False', 'send_anonymous_usage_stats': 'True', 'profiles_dir': '/Users/webdev/.dbt', 'warn_error': 'None', 'quiet': 'False', 'fail_fast': 'False', 'target_path': 'None', 'version_check': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'no_print': 'None', 'printer_width': '80'}
+[0m08:49:15.827252 [debug] [MainThread]: Starter project path: /Users/webdev/dbt-env/lib/python3.12/site-packages/dbt/include/starter_project
+[0m08:49:15.830742 [info ] [MainThread]: 
+Your new dbt project "hamport" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m08:49:15.830975 [info ] [MainThread]: Setting up your profile.
+[0m08:50:22.123118 [error] [MainThread]: Encountered an error:
+
+[0m08:50:22.137244 [error] [MainThread]: Traceback (most recent call last):
+  File "/Users/webdev/dbt-env/lib/python3.12/site-packages/dbt/cli/requires.py", line 182, in wrapper
+    result, success = func(*args, **kwargs)
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/webdev/dbt-env/lib/python3.12/site-packages/dbt/cli/requires.py", line 128, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/webdev/dbt-env/lib/python3.12/site-packages/dbt/cli/main.py", line 483, in init
+    results = task.run()
+              ^^^^^^^^^^
+  File "/Users/webdev/dbt-env/lib/python3.12/site-packages/dbt/task/init.py", line 346, in run
+    self.setup_profile(profile_name)
+  File "/Users/webdev/dbt-env/lib/python3.12/site-packages/dbt/task/init.py", line 262, in setup_profile
+    self.create_profile_from_target(adapter, profile_name=profile_name)
+  File "/Users/webdev/dbt-env/lib/python3.12/site-packages/dbt/task/init.py", line 179, in create_profile_from_target
+    self.create_profile_from_profile_template(profile_template, profile_name)
+  File "/Users/webdev/dbt-env/lib/python3.12/site-packages/dbt/task/init.py", line 163, in create_profile_from_profile_template
+    target = self.generate_target_from_input(prompts, initial_target)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/webdev/dbt-env/lib/python3.12/site-packages/dbt/task/init.py", line 129, in generate_target_from_input
+    target[key] = click.prompt(
+                  ^^^^^^^^^^^^^
+  File "/Users/webdev/dbt-env/lib/python3.12/site-packages/click/termui.py", line 171, in prompt
+    value = prompt_func(prompt)
+            ^^^^^^^^^^^^^^^^^^^
+  File "/Users/webdev/dbt-env/lib/python3.12/site-packages/click/termui.py", line 154, in prompt_func
+    raise Abort() from None
+click.exceptions.Abort
+
+[0m08:50:22.144558 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": false, "command_wall_clock_time": 66.38205, "process_in_blocks": "0", "process_kernel_time": 0.17704, "process_mem_max_rss": "110247936", "process_out_blocks": "0", "process_user_time": 0.841248}
+[0m08:50:22.145793 [debug] [MainThread]: Command `dbt init` failed at 08:50:22.145599 after 66.38 seconds
+[0m08:50:22.148133 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1071b1c40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105942f90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x107582330>]}
+[0m08:50:22.149032 [debug] [MainThread]: Flushing usage events
+[0m08:50:22.676216 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m08:50:43.227570 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104c59e80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106d4e9c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106d4e540>]}
+
+
+============================== 08:50:43.230970 | d813ed8d-ee0c-4db5-90f9-a1e55d16f3f5 ==============================
+[0m08:50:43.230970 [info ] [MainThread]: Running with dbt=1.11.6
+[0m08:50:43.231346 [debug] [MainThread]: running dbt with arguments {'indirect_selection': 'eager', 'log_path': 'logs', 'debug': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_cache_events': 'False', 'introspect': 'True', 'target_path': 'None', 'profiles_dir': '/Users/webdev/.dbt', 'cache_selected_only': 'False', 'static_parser': 'True', 'warn_error': 'None', 'quiet': 'False', 'invocation_command': 'dbt debug', 'log_format': 'default', 'empty': 'None', 'fail_fast': 'False', 'use_experimental_parser': 'False', 'version_check': 'True', 'write_json': 'True', 'no_print': 'None', 'use_colors': 'True', 'printer_width': '80', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m08:50:43.242478 [info ] [MainThread]: dbt version: 1.11.6
+[0m08:50:43.242764 [info ] [MainThread]: python version: 3.12.2
+[0m08:50:43.242956 [info ] [MainThread]: python path: /Users/webdev/dbt-env/bin/python
+[0m08:50:43.243137 [info ] [MainThread]: os info: macOS-15.7.3-arm64-arm-64bit
+[0m08:50:43.369549 [info ] [MainThread]: Using profiles dir at /Users/webdev/.dbt
+[0m08:50:43.369852 [info ] [MainThread]: Using profiles.yml file at /Users/webdev/.dbt/profiles.yml
+[0m08:50:43.370037 [info ] [MainThread]: Using dbt_project.yml file at /Users/webdev/Projects/HamPort/dbt_project.yml
+[0m08:50:43.371246 [info ] [MainThread]: adapter type: duckdb
+[0m08:50:43.371481 [info ] [MainThread]: adapter version: 1.10.1
+[0m08:50:43.371684 [info ] [MainThread]: Configuration:
+[0m08:50:43.371860 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m08:50:43.372028 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m08:50:43.372193 [info ] [MainThread]: Required dependencies:
+[0m08:50:43.372383 [debug] [MainThread]: Executing "git --help"
+[0m08:50:43.390654 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--config-env=<name>=<envvar>] <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m08:50:43.391297 [debug] [MainThread]: STDERR: "b''"
+[0m08:50:43.391517 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m08:50:43.391730 [info ] [MainThread]: Connection:
+[0m08:50:43.391947 [info ] [MainThread]:   database: dev
+[0m08:50:43.392121 [info ] [MainThread]:   schema: main
+[0m08:50:43.392287 [info ] [MainThread]:   path: dev.duckdb
+[0m08:50:43.392445 [info ] [MainThread]:   config_options: None
+[0m08:50:43.392604 [info ] [MainThread]:   extensions: None
+[0m08:50:43.392768 [info ] [MainThread]:   settings: {}
+[0m08:50:43.392931 [info ] [MainThread]:   external_root: .
+[0m08:50:43.393086 [info ] [MainThread]:   use_credential_provider: None
+[0m08:50:43.393246 [info ] [MainThread]:   attach: None
+[0m08:50:43.393401 [info ] [MainThread]:   filesystems: None
+[0m08:50:43.393555 [info ] [MainThread]:   remote: None
+[0m08:50:43.393713 [info ] [MainThread]:   plugins: None
+[0m08:50:43.393869 [info ] [MainThread]:   disable_transactions: False
+[0m08:50:43.394227 [info ] [MainThread]: Registered adapter: duckdb=1.10.1
+[0m08:50:43.443378 [debug] [MainThread]: Acquiring new duckdb connection 'debug'
+[0m08:50:43.469427 [debug] [MainThread]: Using duckdb connection "debug"
+[0m08:50:43.469692 [debug] [MainThread]: On debug: select 1 as id
+[0m08:50:43.469869 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m08:50:43.483768 [debug] [MainThread]: SQL status: OK in 0.014 seconds
+[0m08:50:43.484447 [debug] [MainThread]: On debug: Close
+[0m08:50:43.484908 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m08:50:43.485118 [info ] [MainThread]: [31m1 check failed:[0m
+[0m08:50:43.485295 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </Users/webdev/Projects/HamPort/dbt_project.yml> not found
+
+[0m08:50:43.486849 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.30222955, "process_in_blocks": "0", "process_kernel_time": 0.188869, "process_mem_max_rss": "135921664", "process_out_blocks": "0", "process_user_time": 0.878622}
+[0m08:50:43.487146 [debug] [MainThread]: Command `dbt debug` failed at 08:50:43.487091 after 0.30 seconds
+[0m08:50:43.487358 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m08:50:43.487574 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x104c59e80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106f14260>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106f14da0>]}
+[0m08:50:43.487817 [debug] [MainThread]: Flushing usage events
+[0m08:50:43.960154 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m09:25:25.493453 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b542990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c4aa960>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c4aa540>]}
+
+
+============================== 09:25:25.496752 | 578a16db-7ffe-40c9-bd1f-f109a5ab7978 ==============================
+[0m09:25:25.496752 [info ] [MainThread]: Running with dbt=1.11.6
+[0m09:25:25.497126 [debug] [MainThread]: running dbt with arguments {'empty': 'None', 'target_path': 'None', 'use_experimental_parser': 'False', 'introspect': 'True', 'static_parser': 'True', 'printer_width': '80', 'cache_selected_only': 'False', 'profiles_dir': '/Users/webdev/.dbt', 'log_cache_events': 'False', 'quiet': 'False', 'send_anonymous_usage_stats': 'True', 'invocation_command': 'dbt debug', 'version_check': 'True', 'use_colors': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'no_print': 'None', 'indirect_selection': 'eager', 'fail_fast': 'False', 'write_json': 'True', 'log_format': 'default', 'log_path': 'logs', 'debug': 'False', 'partial_parse': 'True', 'warn_error': 'None'}
+[0m09:25:25.508234 [info ] [MainThread]: dbt version: 1.11.6
+[0m09:25:25.508506 [info ] [MainThread]: python version: 3.12.2
+[0m09:25:25.508685 [info ] [MainThread]: python path: /Users/webdev/dbt-env/bin/python
+[0m09:25:25.508862 [info ] [MainThread]: os info: macOS-15.7.3-arm64-arm-64bit
+[0m09:25:25.677714 [info ] [MainThread]: Using profiles dir at /Users/webdev/.dbt
+[0m09:25:25.678025 [info ] [MainThread]: Using profiles.yml file at /Users/webdev/.dbt/profiles.yml
+[0m09:25:25.678226 [info ] [MainThread]: Using dbt_project.yml file at /Users/webdev/Projects/HamPort/dbt_project.yml
+[0m09:25:25.678458 [error] [MainThread]: Encountered an error:
+Internal Error
+  Profile should not be None if loading profile completed
+[0m09:25:25.680507 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.23055379, "process_in_blocks": "0", "process_kernel_time": 0.159917, "process_mem_max_rss": "131792896", "process_out_blocks": "0", "process_user_time": 0.874814}
+[0m09:25:25.680796 [debug] [MainThread]: Command `dbt debug` failed at 09:25:25.680743 after 0.23 seconds
+[0m09:25:25.681015 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c5c8170>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e2db4d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e23c560>]}
+[0m09:25:25.681239 [debug] [MainThread]: Flushing usage events
+[0m09:25:26.285986 [debug] [MainThread]: An error was encountered while trying to flush usage events
+{"data":{"log_version":3,"version":"=2.0.0-preview.173"},"info":{"category":"","code":"A001","extra":{},"invocation_id":"019db428-6be9-76f2-945b-d8d9b9f755c1","level":"info","msg":"Running with dbt-fusion=2.0.0-preview.173","name":"MainReportVersion","pid":28441,"thread":"tokio-rt-worker","ts":"2026-04-22T07:47:21.208311Z"}}
+{"data":{"args":{"debug":"false","invocation_command":"/Users/webdev/.local/bin/dbt license info --json --log-format json","log_format":"json","quiet":"false","write_json":"true"}},"info":{"category":"","code":"A002","extra":{},"invocation_id":"019db428-6be9-76f2-945b-d8d9b9f755c1","level":"debug","msg":"running dbt-fusion with argumets {\"command\":\"license\",\"vars\":\"{}\",\"limit\":\"10\",\"debug\":false,\"log_format\":\"json\",\"quiet\":false,\"write_json\":true,\"write_catalog\":false}","name":"MainReportArgs","pid":28441,"thread":"tokio-rt-worker","ts":"2026-04-22T07:47:21.208323Z"}}
+{"data":{},"info":{"category":"","code":"","extra":{},"invocation_id":"019db428-6be9-76f2-945b-d8d9b9f755c1","level":"debug","msg":"No active cloud project configured, skipping remote license","name":"Generic","pid":28441,"thread":"tokio-rt-worker","ts":"2026-04-22T07:47:21.211279Z"}}
+{"data":{"columns":[],"is_inline":true,"node_name":"license_info","output_format":"json","preview":"{\n  \"status\": \"not_found\",\n  \"licensing_enabled\": true\n}","unique_id":"license.info"},"info":{"category":"","code":"Q041","extra":{},"invocation_id":"019db428-6be9-76f2-945b-d8d9b9f755c1","level":"info","msg":"{\n  \"status\": \"not_found\",\n  \"licensing_enabled\": true\n}","name":"ShowNode","pid":28441,"thread":"tokio-rt-worker","ts":"2026-04-22T07:47:21.211790Z"}}
+{"data":{"completed_at":"2026-04-22T07:47:21.595573Z","elapsed":0.3893040120601654,"success":true},"info":{"category":"","code":"Q039","extra":{},"invocation_id":"019db428-6be9-76f2-945b-d8d9b9f755c1","level":"info","msg":"\n==================== Execution Summary =====================\nFinished 'license' successfully [389ms]","name":"CommandCompleted","pid":28441,"thread":"tokio-rt-worker","ts":"2026-04-22T07:47:21.596463Z"}}
