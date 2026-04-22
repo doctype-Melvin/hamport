@@ -9,12 +9,12 @@ load_dotenv()
 
 # Credentials config
 API_KEY = os.getenv("HAM_API_KEY")
-PASS = os.getenv("SUPAPASS")
-HAM_API_URL = "https://api.hamburg-airport.de/v2/flights/arrivals"
+SUPABASE = os.getenv("SUPA_URL")
+HAM_API_URL = "https://rest.api.hamburg-airport.de/v2/flights/arrivals"
 HEADERS = {
     "Ocp-Apim-Subscription-Key": API_KEY
 }
-DB_URL = "postgresql://postgres.pzvirfmbpttqkxzbltgd:PASS@aws-1-eu-central-1.pooler.supabase.com:6543/postgres"
+DB_URL = SUPABASE
 
 def fetch_and_load():
     try:
@@ -52,4 +52,4 @@ def fetch_and_load():
         print(f"Fail: Unexpected Error: {e}")
 
 if __name__ == "__main__":
-    fetch_and_load
+    fetch_and_load()
