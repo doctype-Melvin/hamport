@@ -5,3 +5,10 @@ sources:
     schema: raw
     tables:
       - name: raw_arrivals
+        columns:
+          - name: flightnumber
+            tests:
+              - not_null
+          - name: expectedArrivalTime
+            tests:
+              - not_null
