@@ -20,3 +20,8 @@ sources:
           - name: expectedDepartureTime
             tests:
               - not_null
+      - name: raw_weather
+        columns:
+          - name: time
+            tests:
+              - not_null
