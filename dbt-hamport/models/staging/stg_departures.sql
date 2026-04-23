@@ -1,15 +1,15 @@
 with source as (
-    select * from {{ source('raw_data', 'raw_arrivals')}}
+    select * from {{ source('raw_data', 'raw_departures') }}
 ),
 
 cleaned as (
     select
         "flightnumber"::varchar as flight_id,
         "airlineName"::varchar as airline,
-        "originAirportLongName"::varchar as airport_location,
+        "destinationAirportLongNameInt"::varchar as airport_location,
         cancelled,
-        regexp_replace("plannedArrivalTime", '\[.*\]', '')::timestamptz as planned_time,
-        regexp_replace("expectedArrivalTime", '\[.*\]', '')::timestamptz as actual_time
+        regexp_replace("plannedDepartureTime", '\[.*\]', '')::timestamptz as planned_time,
+        regexp_replace("expectedDepartureTime", '\[.*\]', '')::timestamptz as actual_time
     from source
 ),
 

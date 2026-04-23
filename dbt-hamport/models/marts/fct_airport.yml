@@ -1,11 +1,11 @@
 version: 2
 
 models:
-  - name: fct_arrivals
-    description: "Gold layer. Final fact table for airport arrivals used in dashboard."
+  - name: fct_flights
+    description: "Union of both stg_arrivals and stg_departures."
     columns:
       - name: arrival_key
-        description: "Primary key. MD5 hash of flight id and planned time of arrival."
+        description: "Primary key. MD5 hash of flight id and planned time of arrival/departure."
         tests:
           - unique
           - not_null
