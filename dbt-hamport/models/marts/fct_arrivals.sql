@@ -8,6 +8,7 @@ final as (
     select
         md5(concat(flight_id, planned_time::text)) as arrival_key, -- unique identifier
         flight_id,
+        cancelled,
         airline,
         origin_airport,
         planned_time,
@@ -20,6 +21,7 @@ final as (
         to_char(planned_time, 'Day') as day_of_week,
 
         case
+            when flight_status = 'Data Stale' then 'Data Stale'
             when delay_minutes > 15 then 'Late'
             when delay_minutes > 0 then 'Minor Delay'
             when cancelled then 'Cancelled'

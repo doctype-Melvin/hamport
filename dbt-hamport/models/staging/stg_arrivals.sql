@@ -26,6 +26,7 @@ final as (
         
         case
             when cancelled is true then 'Cancelled'
+            when actual_time is null and (now() - planned_time) > interval '6 hours' then 'Data Stale'
             when actual_time is null and planned_time > now() then 'Scheduled'
             when actual_time is null and planned_time <= now() then 'En Route / Delayed'
             else 'Arrived'
