@@ -9,14 +9,13 @@ load_dotenv()
 
 # Credentials config
 API_KEY = os.getenv("HAM_API_KEY")
-SUPABASE = os.getenv("SUPA_URL")
 
 HEADERS = {
     "Ocp-Apim-Subscription-Key": API_KEY
 }
-DB_URL = SUPABASE
 
-def fetch_and_load(endpoint):
+
+def fetch_airport(endpoint, engine):
     URL = f"https://rest.api.hamburg-airport.de/v2/flights/{endpoint}"
     try:
         print(f"Attempting fetch {endpoint} from HAM API...")
@@ -32,7 +31,6 @@ def fetch_and_load(endpoint):
         print(f"Success: Fetched {len(df)} records")
 
         table_name = f"raw_{endpoint}"
-        engine = create_engine(DB_URL)
 
         with engine.begin() as connection:
             connection.execute(text(f"TRUNCATE TABLE raw.{table_name}"))
@@ -55,7 +53,3 @@ def fetch_and_load(endpoint):
         print(f"Fail: Timeout Error: {errt}")
     except Exception as e:
         print(f"Fail: Unexpected Error: {e}")
-
-if __name__ == "__main__":
-    for direction in ['arrivals', 'departures']:
-        fetch_and_load(direction)
