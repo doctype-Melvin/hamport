@@ -8,16 +8,16 @@ weather as (
 
 joined as (
     select
+        f.planned_time,
         f.flight_id,
         f.airline,
-        f.delay_minutes,
-        f.flight_status,
-        f.planned_time,
         f.actual_time,
+        f.delay_minutes,
+        w.condition
         w.temperature,
         w.precipitation,
         w.wind_speed,
-        w.condition
+        f.flight_status,
     from flights f
     left join weather w
         on date_trunc('hour', f.planned_time) = w.weather_at

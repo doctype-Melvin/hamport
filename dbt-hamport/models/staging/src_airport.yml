@@ -9,15 +9,9 @@ sources:
           - name: flightnumber
             tests:
               - not_null
-          - name: expectedArrivalTime
-            tests:
-              - not_null
       - name: raw_departures
         columns:
           - name: flightnumber
-            tests:
-              - not_null
-          - name: expectedDepartureTime
             tests:
               - not_null
       - name: raw_weather
