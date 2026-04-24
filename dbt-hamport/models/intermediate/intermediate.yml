@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: int_flights_weather
+    description: "Join of flights and weather data."
