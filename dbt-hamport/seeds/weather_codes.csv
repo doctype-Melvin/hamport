@@ -1,0 +1,29 @@
+code,description
+0,Clear sky
+1,Mainly clear
+2,partly cloudy
+3,overcast
+45,Fog
+48,Fog	
+51,Drizzle light
+53,Drizzle moderate
+55,Drizzle dense
+56,Drizzle Freezing light
+57,Drizzle Freezing dense
+61,Rain slight
+63,Rain moderate
+65,Rain heavy
+66,Rain Freezing light 
+67,Rain Freezing heavy
+71,Snow Fall slight 
+73,Snow Fall moderate
+75,Snow Fall heavy
+77,Snow grains
+80,Rain Shower slight
+81,Rain Shower moderate
+82,Rain Showers violent
+85,Snow showers slight
+86,Snow showers heavy
+95,Thunderstorm
+96,Thunderstorm slight hail
+99,Thunderstorm heavy hail

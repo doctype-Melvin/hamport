@@ -4,14 +4,10 @@ models:
   - name: fct_flights
     description: "Union of both stg_arrivals and stg_departures."
     columns:
-      - name: arrival_key
+      - name: flight_key
         description: "Primary key. MD5 hash of flight id and planned time of arrival/departure."
         tests:
           - unique
           - not_null
       - name: delay_minutes
         description: "Delay in minutes. NULL if cancelled, 0 if on time."
-      - name: punctual
-        description: "Evaluates punctuality of arrivals"
-        tests:
-          - not_null
