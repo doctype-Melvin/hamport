@@ -1,5 +1,8 @@
 with source as (
-    select * from {{ source('raw_data', 'raw_departures') }}
+    select 
+        md5(cast(concat(flightnumber,'-', "plannedDepartureTime") as text)) as flight_pk,
+        *
+    from {{ source('raw_data', 'raw_departures') }}
 ),
 
 cleaned as (

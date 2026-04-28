@@ -13,11 +13,11 @@ joined as (
         f.airline,
         f.actual_time,
         f.delay_minutes,
-        w.condition
+        w.condition,
         w.temperature,
         w.precipitation,
         w.wind_speed,
-        f.flight_status,
+        f.flight_status
     from flights f
     left join weather w
         on date_trunc('hour', f.planned_time) = w.weather_at

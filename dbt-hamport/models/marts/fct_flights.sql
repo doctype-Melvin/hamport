@@ -1,4 +1,10 @@
-{{ config(materialized='table') }}
+{{
+    config(
+        materialized='incremental',
+        unique_key='flight_pk',
+        on_schema_change='append_new_columns'
+    )
+}}
 
 with arrivals as (
     select
