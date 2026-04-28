@@ -1,12 +1,13 @@
 with source as (
     select 
-        md5(cast(concat(flightnumber,'-', "plannedDepartureTime") as text)) as flight_pk,
+        md5(cast(concat(trim(flightnumber),'-', "plannedDepartureTime", '-departure') as text)) as flight_pk,
         *
     from {{ source('raw_data', 'raw_departures') }}
 ),
 
 cleaned as (
     select
+        flight_pk,
         "flightnumber"::varchar as flight_id,
         "airlineName"::varchar as airline,
         "destinationAirportLongNameInt"::varchar as airport_location,

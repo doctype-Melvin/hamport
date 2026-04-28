@@ -1,7 +1,7 @@
 {{
     config(
         materialized='incremental',
-        unique_key='flight_pk',
+        unique_key='flight_key',
         on_schema_change='append_new_columns'
     )
 }}
@@ -28,7 +28,7 @@ unioned as (
 
 final as (
     select
-        md5(concat(flight_id, planned_time::text, direction)) as flight_key,
+        flight_pk as flight_key,
         flight_id,
         airport_location,
         direction,
@@ -43,3 +43,7 @@ final as (
 )
 
 select * from final
+
+{% if is_incremental() %}
+    where planned_time >= (select max(planned_time) from {{ this }}) - interval '3 days'
+{% endif %}
