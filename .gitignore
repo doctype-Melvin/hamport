@@ -1,3 +1,4 @@
 .env
 logs/
 loaders/__pycache__
+venv/
