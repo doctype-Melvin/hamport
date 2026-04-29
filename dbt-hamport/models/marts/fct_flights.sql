@@ -46,9 +46,11 @@ select
 * 
 from final
 where planned_time >= '2026-04-28'::timestamptz
-and flight_status in ('Cancelled', 'Completed')
-or (flight_status = 'Unknown' and planned_time > now())
+and (
+    flight_status in ('Cancelled', 'Completed')
+    or (flight_status = 'Unknown' and planned_time > now())
+    )
 
 {% if is_incremental() %}
-    where planned_time >= (select max(planned_time) from {{ this }}) - interval '3 days'
+    and planned_time >= (select max(planned_time) from {{ this }})
 {% endif %}
