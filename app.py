@@ -57,5 +57,7 @@ try:
     st.dataframe(df_test)
     st.subheader('Flight Volume by Hour')
     st.line_chart(data=df_volume, x='hour', y='flight_count')
+    st.subheader('Delays in current time window')
+    st.table(df_delays)
 except Exception as e:
     st.error(f"Connection failed: {e}")

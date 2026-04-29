@@ -1,9 +1,7 @@
 {% macro get_flight_status(actual_time, planned_time, cancelled) %}
     case
         when {{ cancelled }} is true then 'Cancelled'
-        when {{ actual_time }} is null and (now() - {{ planned_time }}) > interval '12 hours' then 'Data Stale'
-        when {{ actual_time }} is null and {{ planned_time }} > now() then 'Planned'
-        when {{ actual_time }} is null and {{ planned_time }} <= now() then 'En Route / Delayed'
+        when {{ actual_time }} is null then 'Unknown'
         else 'Completed'
     end
 {% endmacro %}
