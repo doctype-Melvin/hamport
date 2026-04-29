@@ -2,3 +2,4 @@
 logs/
 loaders/__pycache__
 venv/
+.streamlit/
