@@ -43,6 +43,7 @@ def get_data():
             direction
         FROM analytics.fct_flights
         WHERE delay_minutes > 5
+        and actual_time is not null
         ORDER BY delay_minutes desc
         LIMIT 10
     """

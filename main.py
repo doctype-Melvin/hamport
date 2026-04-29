@@ -3,12 +3,16 @@ from loaders.airport_api import fetch_airport
 from loaders.weather_api import fetch_weather
 import os
 from dotenv import load_dotenv
+from datetime import datetime
 
 load_dotenv()
 DB_URL = os.getenv("SUPA_URL")
 engine = create_engine(DB_URL)
 
 def run_fetch():
+    get_time = datetime.now()
+    current_time = get_time.strftime("%d.%m.%Y, %H:%M:%S")
+    print(f"___{current_time}___")
     print("Starting to fetch airport and weather data")
 
     try: 
