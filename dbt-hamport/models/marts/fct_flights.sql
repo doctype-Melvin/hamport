@@ -42,7 +42,12 @@ final as (
     from unioned
 )
 
-select * from final
+select 
+* 
+from final
+where flight_status in ('Cancelled', 'Completed')
+or (flight_status = 'Unknown' and planned_time > now())
+and planned_time >= '2026-04-28'::timestamptz
 
 {% if is_incremental() %}
     where planned_time >= (select max(planned_time) from {{ this }}) - interval '3 days'
