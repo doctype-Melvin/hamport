@@ -2,7 +2,8 @@
     config(
         materialized='incremental',
         unique_key='flight_key',
-        on_schema_change='append_new_columns'
+        on_schema_change='append_new_columns',
+        incremental_strategy='merge'
     )
 }}
 
@@ -42,6 +43,11 @@ final as (
     from unioned
 )
 
+/* 
+final table only tracks flights with 
+a planned_time and acutal_time or planned flights.
+*/
+
 select 
 * 
 from final
@@ -52,5 +58,5 @@ and (
     )
 
 {% if is_incremental() %}
-    and planned_time >= (select max(planned_time) from {{ this }})
+    and planned_time >= (select max(planned_time) - interval '3 days' from {{ this }} )
 {% endif %}
