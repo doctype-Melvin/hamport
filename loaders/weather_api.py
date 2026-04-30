@@ -1,5 +1,6 @@
 import requests
 import pandas as pd
+from datetime import datetime
 from sqlalchemy import text, inspect
 
 def fetch_weather(engine):
@@ -7,9 +8,10 @@ def fetch_weather(engine):
     params = {
         "latitude": 53.33,
         "longitude": 10,
-        "hourly": "temperature_2m,precipitation,wind_speed_10m,weather_code",
+        "hourly": "temperature_2m,precipitation,wind_speed_10m,visibility,weather_code",
         "timezone": "Europe/Berlin",
-        "past_days": 1
+        "past_days": 2,
+        "forecast_days": 1
     }
     try:
         print('Attempting fetching weather data')
