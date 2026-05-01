@@ -3,3 +3,4 @@ logs/
 loaders/__pycache__
 venv/
 .streamlit/
+src/__pycache__
