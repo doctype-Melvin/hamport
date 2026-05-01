@@ -56,5 +56,19 @@ def get_data():
     """
     df_delays = pd.read_sql(query_delays, connect)
 
+    query_weather_history = """
+        SELECT
+        *
+        FROM analytics.fct_weather_history
+        ORDER BY 2 desc
+    """
+    df_weather_history = pd.read_sql(query_weather_history, connect)
+
     connect.close()
-    return df_weather, df_all_flights, df_volume, df_delays
+    return (
+        df_weather,
+        df_all_flights,
+        df_volume,
+        df_delays,
+        df_weather_history
+        )
