@@ -3,7 +3,7 @@ with flights as (
 ),
 
 weather as (
-    select * from {{ ref('stg_weather') }}
+    select * from {{ ref('fct_weather_history') }}
 ),
 
 joined as (
