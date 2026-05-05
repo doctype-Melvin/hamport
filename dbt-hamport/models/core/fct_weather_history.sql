@@ -7,7 +7,7 @@
 }}
 
 with final as (
-    select * from {{ ref('stg_weather') }}
+    select * from {{ ref('int_weather_codes_join') }}
 )
 
 select * from final

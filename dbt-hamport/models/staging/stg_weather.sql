@@ -5,22 +5,16 @@ with source as (
     from {{ source('raw_data', 'raw_weather') }}
 ),
 
-conditions as (
-    select * from {{ ref('weather_codes')}}
-),
-
 final as (
     select
-        s.weather_pk,
-        s.time::timestamptz as weather_at,
-        c.description::varchar as condition,
-        s.visibility::float as visibility_m,
-        s.temperature_2m::float as temperature,
-        s.precipitation::float as precipitation,
-        s.wind_speed_10m::float as wind_speed
+        weather_pk,
+        time::timestamptz as weather_at,
+        visibility::float as visibility_m,
+        temperature_2m::float as temperature,
+        precipitation::float,
+        wind_speed_10m::float as wind_speed,
+        weather_code
     from source s
-    left join conditions c
-        on s.weather_code = c.code
 )
 
 select * from final
