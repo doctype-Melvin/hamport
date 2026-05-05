@@ -43,11 +43,6 @@ final as (
     from unioned
 )
 
-/* 
-final table only tracks flights with 
-a planned_time and acutal_time or planned flights.
-*/
-
 select 
 * 
 from final
