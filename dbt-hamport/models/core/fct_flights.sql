@@ -46,7 +46,7 @@ final as (
 select 
 * 
 from final
-where planned_time >= '2026-05-01'::timestamptz
+where date_trunc('day', planned_time) >= '2026-05-01'
 
 {% if is_incremental() %}
     and planned_time >= (select max(planned_time) - interval '3 days' from {{ this }} )
