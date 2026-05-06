@@ -1,13 +1,14 @@
 with final as (
     select
-        date_trunc('hour', planned_time) as "Hour of Day",
-        condition as "Condition",
-        count(*) as "Number of Flights",
-        avg(delay_minutes) as "AVG Delay"
+        planned_time::DATE as date,
+        extract(HOUR FROM planned_time) as hour_of_day,
+        condition,
+        count(*) as number_of_flights,
+        round(avg(delay_minutes), 2) as avg_delay
     from {{ ref('int_flights_weather_join') }}
     where flight_status in ('Completed', 'Cancelled')
-    group by 1, 2
-    order by 1 desc
+    group by 1, 2, 3
+    order by 1 desc, 2 asc
 )
 
 select * from final
