@@ -4,3 +4,4 @@ loaders/__pycache__
 venv/
 .streamlit/
 src/__pycache__
+messy_flights.csv
