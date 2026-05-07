@@ -14,7 +14,8 @@ cleaned as (
         cancelled,
         regexp_replace("plannedDepartureTime", '\[.*\]', '')::timestamptz as planned_time,
         regexp_replace("expectedDepartureTime", '\[.*\]', '')::timestamptz as actual_time
-    from source
+    from source 
+   
 ),
 
 final as (

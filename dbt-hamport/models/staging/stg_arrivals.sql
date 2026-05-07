@@ -5,6 +5,7 @@ with source as (
     from {{ source('raw_data', 'raw_arrivals')}}
 ),
 
+
 cleaned as (
     select
         flight_pk,
@@ -15,6 +16,7 @@ cleaned as (
         regexp_replace("plannedArrivalTime", '\[.*\]', '')::timestamptz as planned_time,
         regexp_replace("expectedArrivalTime", '\[.*\]', '')::timestamptz as actual_time
     from source
+   
 ),
 
 final as (
