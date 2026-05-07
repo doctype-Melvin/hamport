@@ -13,6 +13,7 @@ joined as (
         f.airline,
         f.actual_time,
         f.delay_minutes,
+        f.direction,
         w.condition,
         w.temperature,
         w.precipitation,
