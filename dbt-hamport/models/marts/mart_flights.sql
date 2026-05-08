@@ -1,19 +1,13 @@
-with flights_data as (
+with flights_weather_data as (
     select
     *
-    from {{ ref("fct_flights") }}
+    from {{ ref("int_flights_weather_join") }}
 ),
 
 airlines as (
     select
     *
     from {{ ref("airlines")}}
-),
-
-weather_data as (
-    select
-    *
-    from {{ ref("fct_weather_history")}}
 ),
 
 joined as (
@@ -29,14 +23,13 @@ joined as (
     to_char(f.actual_time, 'HH24:MI') as time_actual,
     round(f.delay_minutes, 1) as minutes_delay,
     f.planned_hour,
-    w.condition,
-    w.visibility_m,
-    w.temperature,
-    w.precipitation,
-    w.wind_speed
-    from flights_data f
+    f.condition,
+    f.visibility_m,
+    f.temperature,
+    f.precipitation,
+    f.wind_speed
+    from flights_weather_data f
     left join airlines a on f.airline = a.airline
-    left join weather_data w on date_trunc('hour', f.planned_time) = w.weather_at
 ),
 
 final as (
