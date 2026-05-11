@@ -1,4 +1,10 @@
 import streamlit as st
 
-def linechart(df):
-    return st.line_chart(data=df, x='hour', y='flight_count')
+def barchart(df):
+    return st.bar_chart(
+        data=df,
+        x='date',
+        x_label='Date',
+        y='flight_count',
+        y_label='Count')
+
