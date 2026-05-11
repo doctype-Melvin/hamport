@@ -1,7 +1,7 @@
 with final as (
     select
     *
-    from {{ ref("int_flights_enriched") }}
+    from {{ ref("int_airport_hourly_stats")}}
 )
 
 select * from final
