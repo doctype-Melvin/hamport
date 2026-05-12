@@ -88,6 +88,14 @@ def get_data():
 
     df_airlines_stats = pd.read_sql(query_airlines_stats, connect)
 
+    query_origin_delays = """
+        SELECT
+        *
+        FROM analytics.mart_airport_delays
+    """
+
+    df_airport_delays = pd.read_sql(query_origin_delays, connect)
+
     connect.close()
     return (
         df_weather,
@@ -96,5 +104,6 @@ def get_data():
         df_delays,
         df_weather_history,
         df_airport_stats,
-        df_airlines_stats
+        df_airlines_stats,
+        df_airport_delays
         )

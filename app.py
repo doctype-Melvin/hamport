@@ -5,11 +5,9 @@ from src.loader import get_data
 from src.charts import barchart
 from src.metrix import bans
 
-
-
 st.set_page_config(page_title="Hamburg Airport Data", layout="wide")
 
-st.title("Flights and Weather Data")
+st.title("Flights, Delays and Weather")
 st.write("Helmut Schmidt Airport - Hamburg-Fuhlsbüttel")
 
 try:
@@ -20,7 +18,8 @@ try:
         df_delays,
         df_weather_history,
         df_airport_stats,
-        df_airlines_stats
+        df_airlines_stats,
+        df_airport_delays
     ) = get_data()
     
     today = df_weather_history.weather_at[0].strftime("%d.%m.%Y")
@@ -44,6 +43,7 @@ try:
     st.write('Airline stats')
     data_top5_airlines = df_airlines_stats.sort_values('number_of_flights', ascending=False).head(5)
     data_busy_hours = df_airport_stats.sort_values('number_of_flights', ascending=False).head(5)
+    
     col1, col2 = st.columns(2)
     with col1:
         st.bar_chart(
@@ -65,11 +65,22 @@ try:
             horizontal=True,
             sort='-number_of_flights'
         )
+    
+    st.write('Top 5 delays by origin airport')
+    data_top5_origin_delays = df_airport_delays.sort_values('avg_arrival_delay', ascending=False).head(5)
 
+    st.bar_chart(
+        data=data_top5_origin_delays,
+        x='airport_location',
+        x_label='Airport Location',
+        y='avg_arrival_delay',
+        y_label='AVG Delay',
+        horizontal=True,
+        sort='-avg_arrival_delay'
+    )
 
+    st.subheader('Data Quality assessment')
 
     
-    st.write('Delays in current time window')
-    st.table(df_delays)
 except Exception as e:
     st.error(f"Connection failed: {e}")
