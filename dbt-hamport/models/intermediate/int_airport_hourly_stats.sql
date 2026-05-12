@@ -1,22 +1,22 @@
-with flights_by_hour as (
+with daily_counts as (
     select
+        date,
         planned_hour,
         direction,
-        count(*) as number_of_flights,
-        count(case when flight_status = 'Completed' then 1 end) as tracked_flights,
-        count(case when flight_status = 'Cancelled' then 1 end) as cancelled_flights,
-        round(avg(case when flight_status = 'Completed' then minutes_delay end), 0) as avg_hourly_delay,
-        round(sum(case when flight_status = 'Completed' then minutes_delay end), 0) as total_delay
+        count(*) as total_daily_flights,
+        avg(minutes_delay) as avg_daily_delay
     from {{ ref('int_flights_enriched') }}
-    group by 1, 2
-    order by 1
+    group by 1, 2, 3
 ),
 
 final as (
     select
-      *
-    from flights_by_hour
-    order by 1
+        planned_hour,
+        direction,
+        round(avg(total_daily_flights), 0) as avg_hourly_flights,
+        round(avg(avg_daily_delay), 0) as avg_hourly_delay
+    from daily_counts
+    group by 1, 2
 )
 
-select * from final
+select * from final order by planned_hour
