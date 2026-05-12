@@ -19,7 +19,7 @@ joined as (
     f.airline,
     coalesce(a.group, f.airline) as airline_group,
     f.flight_status,
-    f.cancelled,
+    case when f.cancelled = 'TRUE' then 1 else 0 end as cancelled_fl,
     to_char(f.planned_time, 'HH24:MI') as time_planned,
     to_char(f.actual_time, 'HH24:MI') as time_actual,
     round(f.delay_minutes, 1) as minutes_delay,

@@ -1,7 +1,7 @@
 with flights_by_airline as (
     select
         airline_group,
-        cancelled,
+        sum(cancelled_fl),
         count(*) as number_of_flights,
         round(100 * count(*) / sum(count(*)) over (), 2) as share,
         count(case when flight_status = 'Completed' then 1 end) as tracked_flights,
@@ -9,7 +9,7 @@ with flights_by_airline as (
         round(avg(case when flight_status = 'Completed' then minutes_delay end), 0) as avg_delay,
         round(sum(case when flight_status = 'Completed' then minutes_delay end), 0) as total_delay
     from {{ ref('int_flights_enriched') }}
-    group by 1, 2
+    group by 1
     order by 3 desc
 ),
 
