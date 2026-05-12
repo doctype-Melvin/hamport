@@ -7,8 +7,9 @@ from src.metrix import bans
 
 st.set_page_config(page_title="Hamburg Airport Data", layout="wide")
 
-st.title("Flights, Delays and Weather")
-st.write("Helmut Schmidt Airport - Hamburg-Fuhlsbüttel")
+st.title("Aviation Report", text_alignment='center')
+st.subheader("Helmut Schmidt Airport - Hamburg-Fuhlsbüttel (HAM)", text_alignment='center')
+st.divider()
 
 try:
     (
@@ -24,16 +25,65 @@ try:
         df_data_quality
     ) = get_data()
     
+    # Description and current weather
     today = df_weather_history.weather_at[0].strftime("%d.%m.%Y")
     condition = df_weather_history.condition[0]
     col1, col2 = st.columns(2)
 
     with col1:
-        st.header(f"Date: {today}")
+        st.markdown('''
+        This report visualizes information pulled from :yellow[Hamburg Airport Open API]  
+                    and :yellow[open-meteo.com].
+    ''')
     with col2:
-        st.header(f"Condition: {condition}")
+        st.info(f"Date: {today} - Weather in Hamburg: {condition}")
+    
+    st.divider()
+    
+    # Big Awesome Numbers - BANs    
+    total_flights = len(df_all_flights)
+    avg_delay = round(df_all_flights['minutes_delay'].mean(), 1)
+    avg_daily_flights = round(total_flights / df_all_flights['date'].nunique(), 0)
+    airports = df_all_flights['airport_location'].nunique()
 
-    st.write('Flight Volume by Date')
+    cols = st.columns(4)
+    with cols[0]:
+        st.metric(label='Total flights in database', value=total_flights, border=True)
+    with cols[1]:
+        st.metric(label='Avg Flight Delay', value=f'{avg_delay} minutes', border=True)
+    with cols[2]:
+        st.metric(label='Hub Reach', value=f'{airports} airports', border=True)
+    with cols[3]:
+        st.metric(label='Flights per Day', value=f'Ø {avg_daily_flights}', border=True)
+    st.divider()
+    # Data Quality
+    st.header('Data Quality assessment', text_alignment='center')
+    metrics_dict = df_data_quality.to_dict('records')
+    
+    cols = st.columns(len(metrics_dict)+1)
+
+    with cols[0]:
+        st.warning('Tracking arrivals is automatic, Departures are manually tracked.')
+
+    for i, row in enumerate(metrics_dict):
+        direction = row['direction']
+        total = row['scheduled_flights']
+        tracked = row['tracked_flights']
+        pct = row['completeness_pct']
+
+        cols[i+1].metric(
+            label=f"{direction}",
+            value=f"{pct}%",
+            delta=f"{tracked} tracked flights",
+            delta_arrow="off",
+            delta_color="normal" if pct > 80 else "inverse",
+            border=True
+        )
+    
+    st.divider()
+
+    st.header('Flight Volume by Date', text_alignment='center')
+    st.subheader('How many flights arrive at and leave from Hamburg Airport?')
     st.bar_chart(
         data=df_volume,
         x='date',
@@ -42,13 +92,15 @@ try:
         y_label='Count'
     )
     
-    st.header('Airlines and busy hours')
+    st.divider()
+
+    st.header('Airlines and busy hours', text_alignment='center')
     data_top5_airlines = df_airlines_stats.sort_values('number_of_flights', ascending=False).head(5)
     data_busy_hours = df_airport_stats.sort_values('avg_hourly_flights', ascending=False).head(5)
     
     col1, col2 = st.columns(2)
     with col1:
-        st.write('Airlines with the most flights')
+        st.subheader('Airlines with the most flights')
         st.bar_chart(
             data=data_top5_airlines,
             x='airline_group',
@@ -60,7 +112,7 @@ try:
         )
 
     with col2:
-        st.write('Busy hours at Hamburg Airport')
+        st.subheader('Busy hours at Hamburg Airport')
         st.bar_chart(
             data=data_busy_hours,
             x='planned_hour',
@@ -71,7 +123,11 @@ try:
             sort='-avg_hourly_flights'
         )
     
-    st.header('Delays and Cancellations Stats')
+    st.divider()
+
+    st.header('Delays and Cancellations Stats', text_alignment='center')
+    st.subheader('Delays over time')
+    st.warning('The peak in delays on May 3, 2026 was caused by a small plane accident.')
     st.area_chart(
         data=df_delays_date,
         x='date',
@@ -123,27 +179,7 @@ try:
             sort='-avg_arrival_delay'
         )
 
-    st.subheader('Data Quality assessment')
-    metrics_dict = df_data_quality.to_dict('records')
     
-    cols = st.columns(len(metrics_dict)+1)
-
-    with cols[0]:
-        st.info('Tracking arrivals is automatic, Departures are manually tracked.')
-
-    for i, row in enumerate(metrics_dict):
-        direction = row['direction']
-        total = row['scheduled_flights']
-        tracked = row['tracked_flights']
-        pct = row['completeness_pct']
-
-        cols[i+1].metric(
-            label=f"{direction}",
-            value=f"{pct}%",
-            delta=f"{tracked} tracked flights",
-            delta_arrow="off",
-            delta_color="normal" if pct > 80 else "inverse"
-        )
 
 
 except Exception as e:
