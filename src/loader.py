@@ -33,7 +33,9 @@ def get_data():
     df_volume = df_volume.sort_values('date')
 
     
-    df_delays = df_all_flights.sort_values('minutes_delay', ascending=False).head(5)
+    df_delays_current = df_all_flights.sort_values('minutes_delay', ascending=False).head(5)
+
+    df_delays_date = pd.read_sql(q.AVG_DELAY_DATE, connect)
 
     # fct_weather_history
     df_weather_history = pd.read_sql(q.WEATHER_HISTORY, connect)
@@ -47,14 +49,19 @@ def get_data():
     # mart_airport_delays
     df_airport_delays = pd.read_sql(q.ORIGIN_DELAYS, connect)
 
+    # mart_data_quality
+    df_data_quality = pd.read_sql(q.DATA_QUALITY, connect)
+
     connect.close()
     return (
         df_weather,
         df_all_flights,
         df_volume,
-        df_delays,
+        df_delays_current,
+        df_delays_date,
         df_weather_history,
         df_airport_stats,
         df_airlines_stats,
-        df_airport_delays
+        df_airport_delays,
+        df_data_quality
         )

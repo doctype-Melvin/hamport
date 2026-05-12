@@ -21,6 +21,17 @@ FLIGHTS_VOLUME = """
         ORDER BY 1
     """
 
+AVG_DELAY_DATE = """
+        SELECT
+            date,
+            direction,
+            count(*) as date_volume,
+            round(avg(minutes_delay)) as date_delay
+        FROM analytics.mart_flights
+        WHERE date < date_trunc('day', now())
+        GROUP BY 1, 2
+"""
+
 WEATHER_HISTORY = """
         SELECT
         *
@@ -45,5 +56,11 @@ ORIGIN_DELAYS = """
         SELECT
         *
         FROM analytics.mart_airport_delays
+    """
+
+DATA_QUALITY = """
+        SELECT
+        *
+        FROM analytics.mart_data_quality
     """
 
