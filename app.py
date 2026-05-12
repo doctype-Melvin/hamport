@@ -71,7 +71,7 @@ try:
             sort='-avg_hourly_flights'
         )
     
-    st.header('Delay Stats')
+    st.header('Delays and Cancellations Stats')
     st.area_chart(
         data=df_delays_date,
         x='date',
@@ -81,18 +81,47 @@ try:
         color='direction'
     )
 
-    st.write('Top 5 delays by origin airport')
+    # Origin Airport Delays Top5
     data_top5_origin_delays = df_airport_delays.sort_values('avg_arrival_delay', ascending=False).head(5)
+    
+    # Airlines cancellation rate
+    # 1. Group by airline and sum cancelled flights per airline group
+    airline_stats = df_all_flights.groupby('airline_group').agg(
+        total_flights=('flight_id', 'count'),
+        cancelled_flights=('cancelled_fl', lambda x: (x == 1).sum())
+    ).reset_index()
 
-    st.bar_chart(
-        data=data_top5_origin_delays,
-        x='airport_location',
-        x_label='Airport Location',
-        y='avg_arrival_delay',
-        y_label='AVG Delay',
-        horizontal=True,
-        sort='-avg_arrival_delay'
-    )
+    # 2. Calculate share of cancelled flights
+    airline_stats['cancel_rate_pct'] = (
+        airline_stats['cancelled_flights'] / airline_stats['total_flights']
+        ) * 100
+    airline_stats = airline_stats.sort_values('cancel_rate_pct', ascending=False).head(5)
+
+    cols = st.columns(2)
+
+    with cols[0]:
+        st.write('Which airline highest rate of cancelled flights?')
+
+        st.bar_chart(
+            data=airline_stats,
+            x='airline_group',
+            x_label='Airline Group',
+            y='cancel_rate_pct',
+            y_label='Cancelled Flights %',
+            horizontal=True
+        )
+
+    with cols[1]:
+        st.write('Which airport causes the biggest delays?')
+        st.bar_chart(
+            data=data_top5_origin_delays,
+            x='airport_location',
+            x_label='Airport Location',
+            y='avg_arrival_delay',
+            y_label='AVG Delay',
+            horizontal=True,
+            sort='-avg_arrival_delay'
+        )
 
     st.subheader('Data Quality assessment')
     metrics_dict = df_data_quality.to_dict('records')
