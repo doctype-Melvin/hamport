@@ -14,6 +14,7 @@ joined as (
         extract(HOUR FROM f.planned_time) as planned_hour,
         f.planned_time,
         f.actual_time,
+        f.cancelled,
         f.delay_minutes,
         f.direction,
         w.condition,
