@@ -1,5 +1,17 @@
 version: 2
 
+models:
+  - name: stg_arrivals
+    description: "Cleaning layer of raw arrivals data. \n
+      Uses regex to format the timstamptz values. Cleans up column names."
+  - name: stg_departures
+    description: "Cleaning layer of raw departures data. \n
+      Uses regex to format the timstamptz values. Cleans up column names."
+  - name: stg_weather
+    description: "Cleaning layer of raw weather data. \n
+      Cleans up column names."
+    
+
 sources:
   - name: raw_data
     schema: raw

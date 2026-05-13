@@ -2,14 +2,15 @@ version: 2
 
 models:
   - name: fct_flights
-    description: "Union of both stg_arrivals and stg_departures."
+    description: "Incremental model.\n
+     Union of both stg_arrivals and stg_departures."
     columns:
       - name: flight_key
         description: "Primary key. MD5 hash of flight id and planned time of arrival/departure."
         tests:
           - unique
           - not_null
-      - name: delay_minutes
-        description: "Delay in minutes. NULL if cancelled, 0 if on time."
   - name: fct_weather_history
-    description: "Table of all fetched weather data."
+    description: "Incremental mode. \n
+      Growing table of all fetched weather data. Receives data \n
+      from int_weather_codes_join."

@@ -1,5 +1,29 @@
 version: 2
 
 models:
+  - name: int_airlines_stats
+    description: "Describes the volume, share, cancellations and \n
+      delays by airline group. Child to int_flights_enriched."
+  - name: int_airport_hourly_stats
+    description: "View holds information about hourly averages \n
+      in terms of volumes and delays. Child to int_flights_enriched."
+  - name: int_flights_enriched
+    description: "The central analytics model. Joins airline groups to each flight. \n
+      Calculations of flight status and delays happen here. \n
+      Parent to most marts and intermediate models."
+    columns: 
+      - name: airline_group
+        description: A coalesce function to set airline/group.
+      - name: flight_status
+        description: Call of the get_flight_status macro to set status of flight.
+      - name: cancelled_fl
+        description: "Case turns boolean into number. This value is used on the frontend \n
+         to calculate cancellation shares per airline. "
+      - name: minutes_delay
+        description:  Call of the get_delay_minutes macro to calculate delays.
   - name: int_flights_weather_join
-    description: "Join of flights and weather data."
+    description: "The core join of two incremental models. \n
+      Joins fct_flights and fct_weather_history."
+  - name: int_flights_weather_codes_join
+    description: "Join of weather codes and weather data. \n
+      Is the basis for the fct_weather_history incremental model."
