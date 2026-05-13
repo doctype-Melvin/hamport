@@ -10,7 +10,7 @@
      case
         when {{ cancelled }} is true then null
         when {{ actual_time }} is not null and {{ planned_time }} is not null 
-            then extract(epoch from (now() - {{ planned_time }})) / 60
+            then extract(epoch from ({{ actual_time }} - {{ planned_time }})) / 60
         else null
     end
 {% endmacro %}
