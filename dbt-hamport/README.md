@@ -107,7 +107,19 @@
 
 * **Insights:** Shifted from "Explanatory" (weather correlation) to "Descriptive" (airline volume and data quality tracking) after observing that operational issues often outweighed weather impacts.
 
-### Resources:
+# Screenshots
+
+## Dashboard
+![Header and BANs](../assets/dashboard-1.png)
+![Volumes](../assets/dashboard-2.png)
+![Delays](../assets/dashboard-3.png)
+
+## Lineage Graph Evolution
+![Starter](../assets/lineage-1.png)
+![Expanded](../assets/lineage-2.png)
+![End of first iteration](../assets/lineage-3.png)
+
+### Tech Stack:
 - Flight data from [Hamburg Airport API](https://www.hamburg-airport.de/de/open-api-20708)
 - Weather data from [Open-Meteo](https://open-meteo.com/) 
 - Data modelling with [dbt](https://docs.getdbt.com/?version=1.12)
