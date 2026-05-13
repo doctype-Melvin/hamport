@@ -15,14 +15,14 @@ joined as (
         f.planned_time,
         f.actual_time,
         f.cancelled,
-        f.delay_minutes,
+        {# f.delay_minutes, #}
         f.direction,
         w.condition,
         w.visibility_m,
         w.temperature,
         w.precipitation,
-        w.wind_speed,
-        f.flight_status
+        w.wind_speed
+        {# f.flight_status #}
     from flights f
     left join weather w
         on date_trunc('hour', f.planned_time) = w.weather_at

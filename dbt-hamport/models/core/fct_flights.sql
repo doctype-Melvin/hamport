@@ -36,9 +36,9 @@ final as (
         airline,
         planned_time,
         actual_time,
-        flight_status,
+        {# flight_status, #}
         cancelled,
-        delay_minutes,
+        {# delay_minutes, #}
         extract(hour from planned_time) as planned_hour
     from unioned
 )

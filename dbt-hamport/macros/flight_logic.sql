@@ -1,4 +1,4 @@
-{% macro get_flight_status(actual_time, planned_time, cancelled) %}
+{% macro get_flight_status(actual_time, cancelled) %}
     case
         when {{ cancelled }} is true then 'Cancelled'
         when {{ actual_time }} is null then 'Unknown'

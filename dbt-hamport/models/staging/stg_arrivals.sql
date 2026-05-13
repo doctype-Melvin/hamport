@@ -22,8 +22,8 @@ cleaned as (
 final as (
     select
         *,
-        {{ get_flight_status('actual_time', 'planned_time', 'cancelled')}} as flight_status,
-        {{ get_delay_minutes('actual_time', 'planned_time', 'cancelled')}} as delay_minutes
+        {# {{ get_flight_status('actual_time', 'planned_time', 'cancelled')}} as flight_status,
+        {{ get_delay_minutes('actual_time', 'planned_time', 'cancelled')}} as delay_minutes #}
     from cleaned
 )
 

@@ -18,7 +18,8 @@ joined as (
     f.airport_location,
     f.airline,
     coalesce(a.group, f.airline) as airline_group,
-    f.flight_status,
+    {# f.flight_status, #}
+    {{ get_flight_status('f.actual_time', 'f.cancelled')}} as flight_status,
     f.cancelled,
     case when f.cancelled = 'TRUE' then 1 else 0 end as cancelled_fl,
     to_char(f.planned_time, 'HH24:MI') as time_planned,
