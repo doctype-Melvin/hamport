@@ -14,11 +14,7 @@ engine = create_engine(os.getenv("SUPA_URL"))
 query = """
     SELECT DISTINCT
         airport_location
-    FROM analytics.stg_arrivals
-    UNION
-    SELECT DISTINCT
-        airport_location
-    FROM analytics.stg_departures
+    FROM analytics.fct_flights
 """
 print("Connecting to database")
 df_unique = pd.read_sql(query, engine)
@@ -30,7 +26,7 @@ print("Query successful. Continuing in 3 seconds...")
 time.sleep(3)
 
 print("Cleaning airport location names")
-df = pd.read_csv('./dbt-hamport/seeds/airport_locations.csv')
+df = pd.read_csv('./dbt-hamport/seeds/airport_mapping.csv')
 unique_names = sorted(df['airport_location'].tolist())
 
 mapping_data = []

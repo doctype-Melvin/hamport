@@ -10,12 +10,16 @@ airlines as (
     from {{ ref("airlines")}}
 ),
 
+locations as (
+    select * from {{ ref("airport_mapping") }}
+),
+
 joined as (
     select
     f.planned_time::date as date,
     f.flight_id,
     f.direction,
-    f.airport_location,
+    l.standardized_location as airport_location,
     f.airline,
     coalesce(a.group, f.airline) as airline_group,
     {{ get_flight_status('f.actual_time', 'f.cancelled')}} as flight_status,
@@ -30,6 +34,7 @@ joined as (
     f.wind_speed
     from flights_weather_data f
     left join airlines a on f.airline = a.airline
+    left join locations l on f.airport_location = l.airport_location
 ),
 
 final as (

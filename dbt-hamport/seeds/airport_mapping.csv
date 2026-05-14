@@ -2,6 +2,7 @@ airport_location,standardized_location
 Alicante,Alicante
 Amman,Amman
 Amsterdam,Amsterdam
+Ankara,Ankara
 Antalya,Antalya
 Athen,Athen
 Athens,Athen
@@ -20,18 +21,21 @@ Brüssel,Brussels
 Bucharest/Baneasa,Bucharest/Baneasa
 Bukarest/Baneasa,Bucharest/Baneasa
 Budapest,Budapest
+Cagliari,Cagliari
 Catania,Catania
 Chania,Chania
 Chisinau,Chisinau
 Copenhagen,Copenhagen
 Kopenhagen,Copenhagen
+Dalaman,Dalaman
 Danzig,Danzig
 Dubai,Dubai
 Dublin,Dublin
+Dubrovnik,Dubrovnik
 Dusseldorf,Dusseldorf
 Düsseldorf,Dusseldorf
-Eriwan Zvartnots,Eriwan Zvartnots
-Yerevan Zvartnots,Eriwan Zvartnots
+Eriwan Zvartnots,Yerevan Zvartnots
+Yerevan Zvartnots,Yerevan Zvartnots
 Faro,Faro
 Florenz,Florenz
 Frankfurt,Frankfurt
@@ -52,6 +56,7 @@ Izmir,Izmir
 Jerez De La Frontera,Jerez De La Frontera
 Jerez de la Frontera,Jerez De La Frontera
 Kalamata,Kalamata
+Malta,Malta
 Korfu,Korfu
 Kos,Kos
 Kutaisi,Kutaisi
@@ -78,6 +83,7 @@ München,Munich
 Neapel,Neapel
 Nice,Nice
 Nizza,Nice
+Nuremberg,Nuremberg
 Olbia,Olbia
 Oslo,Oslo
 Palma De Mallorca,Palma De Mallorca
@@ -89,7 +95,8 @@ Pristina,Pristina
 Rhodes,Rhodes
 Rhodos,Rhodes
 Riga,Riga
-Rom/Fiumicino,Rom/Fiumicino
+Rijeka,Rijeka
+Rom/Fiumicino,Rome/FCO
 Rome/FCO,Rome/FCO
 Saarbrücken,Saarbrücken
 Salzburg,Salzburg
@@ -98,6 +105,7 @@ Sofia,Sofia
 Split,Split
 Stockholm,Stockholm
 Stuttgart,Stuttgart
+Tallinn,Tallinn
 Tenerife,Tenerife
 Teneriffa-Süd,Tenerife
 Thessaloniki,Thessaloniki
@@ -110,8 +118,9 @@ Verona-Villafranca,Verona-Villafranca
 Vienna,Vienna
 Vilnius,Vilnius
 Warsaw,Warsaw
-Warschau,Warschau
+Warschau,Warsaw
 Wien,Vienna
+Zadar,Zadar
 Zagreb,Zagreb
 Zakynthos,Zakynthos
 Zurich,Zurich
