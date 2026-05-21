@@ -35,5 +35,7 @@ jobs:
       - name: Run dbt
         env:
           SUPA_PASS: ${{ secrets.SUPA_PASS }}
+          SUPA_HOST: ${{ secrets.SUPA_HOST}}
+          SUPA_USER: ${{ secrets.SUPA_USER }}
         run: dbt run --profiles-dir .
         working-directory: ./dbt-hamport
