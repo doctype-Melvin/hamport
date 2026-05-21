@@ -21,8 +21,19 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install dbt-postgres
       - name: Run script
         env:
           SUPA_URL: ${{ secrets.SUPA_URL }}
           HAM_API_KEY: ${{ secrets.HAM_API_KEY }}
         run: python main.py
+      
+      - name: Install dbt packages
+        run: dbt deps --profiles-dir .
+        working-directory: ./dbt-hamport
+      
+      - name: Run dbt
+        env:
+          SUPA_PASS: ${{ secrets.SUPA_PASS }}
+        run: dbt run --profiles-dir .
+        working-directory: ./dbt-hamport
