@@ -24,4 +24,5 @@ jobs:
       - name: Run script
         env:
           SUPA_URL: ${{ secrets.SUPA_URL }}
+          HAM_API_KEY: ${{ secrets.HAM_API_KEY }}
         run: python main.py
