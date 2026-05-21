@@ -1,0 +1,12 @@
+default: hamport
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ evn_var('SUPA_HOST') }}" 
+      user: "{{ env_var('SUPA_USER') }}"
+      password: "{{ env_var('SUPA_PASS') }}"
+      port: 5432
+      dbname: postgres
+      schema: analytics
+      threads: 4
+  target: dev
