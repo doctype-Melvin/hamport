@@ -24,6 +24,3 @@ models:
   - name: int_flights_weather_join
     description: "The core join of two incremental models. \n
       Joins fct_flights and fct_weather_history."
-  - name: int_flights_weather_codes_join
-    description: "Join of weather codes and weather data. \n
-      Is the basis for the fct_weather_history incremental model."
