@@ -21,8 +21,6 @@ if "data" not in st.session_state:
         st.session_state["data"] = None
         st.session_state["fetch_error"] = True
 
-print(st.session_state["data"])
-
 dashboard_view = st.Page("views/dashboard.py", title="Hamburg Airport Overview", default=True)
 flights_view = st.Page("views/flights.py", title="Flights and Airlines")
 delays_view = st.Page("views/delays.py", title="Delays at Hamburg Airport")

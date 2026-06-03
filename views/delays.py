@@ -31,7 +31,15 @@ airline_stats = d["all_flights"].groupby('airline_group').agg(
 airline_stats['cancel_rate_pct'] = (
     airline_stats['cancelled_flights'] / airline_stats['total_flights']
     ) * 100
-airline_stats = airline_stats.sort_values('cancel_rate_pct', ascending=False).head(5)
+airline_stats = (
+    airline_stats.sort_values('cancel_rate_pct', ascending=False)
+    .head(5)
+    .reset_index()
+    )
+
+airline_stats['airline_group'] = [
+    f"{i+1}. {name}" for i, name in enumerate(airline_stats['airline_group'])
+]
 
 cols = st.columns(2)
 
