@@ -14,7 +14,7 @@ ALL_FLIGHTS = """
 FLIGHTS_VOLUME = """
         SELECT
             date,
-            count(*) as flight_count
+            count(distinct flight_id) as flight_count
         FROM analytics.mart_flights
         WHERE date > '2026-04-30'
         GROUP BY 1
@@ -64,3 +64,8 @@ DATA_QUALITY = """
         FROM analytics.mart_data_quality
     """
 
+AIRPORT_RELATIONS = """
+        SELECT
+        *
+        FROM analytics.mart_airport_relations
+    """

@@ -5,3 +5,4 @@ venv/
 .streamlit/
 src/__pycache__
 messy_flights.csv
+src/tabs/__pycache__

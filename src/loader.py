@@ -53,6 +53,8 @@ def get_data():
         # mart_data_quality
         df_data_quality = pd.read_sql(q.DATA_QUALITY, connect)
 
+        df_relations = pd.read_sql(q.AIRPORT_RELATIONS, connect)
+
         connect.close()
         return {
             "weather": df_weather,
@@ -64,7 +66,8 @@ def get_data():
             "airport_stats": df_airport_stats,
             "airlines_stats": df_airlines_stats,
             "airport_delays": df_airport_delays,
-            "data_quality": df_data_quality
+            "data_quality": df_data_quality,
+            "airport_relations": df_relations
             }
             
     except Exception as e:
