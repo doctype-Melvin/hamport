@@ -1,26 +1,22 @@
 import streamlit as st
 import pandas as pd
-from dotenv import load_dotenv
 from src.loader import get_data
-from src.charts import barchart
-from src.metrix import bans
+from src.tabs.overview import render_overview
+from src.tabs.airlines_flights import render_airlines
 
 st.set_page_config(page_title="Hamburg Airport Data", page_icon="✈", layout="wide")
 
-if "data" not in st.session_state:
-    airport_data = get_data()
+d = None
 
-    if airport_data is not None:
-        st.session_state["data"] = airport_data
-        st.session_state["fetch_error"] = False
+if d == None:
+    data = get_data()
+
+    if data is not None:
+        st.toast('Data ready!', icon='✅', duration='short')
+        d = data
     else:
-        st.session_state["data"] = None
-        st.session_state["fetch_error"] = True
-
-if st.session_state.get("fetch_error", True) or st.session_state["data"] is None:
-    st.error("⚠️ Unable to load flight data right now. Please check your database connection or try again later.")
-else:
-    d = st.session_state["data"]
+        st.toast('Unable to fetch data. Please refresh page.', icon='🔄')
+        st.stop()
 
 today = d["weather_history"].weather_at[0].strftime("%d.%m.%Y")
 condition = d["weather_history"].condition[0]
@@ -56,33 +52,39 @@ st.divider()
 
 # Big Awesome Numbers - BANs    
 total_flights = len(d["all_flights"])
+formatted_total = f"{total_flights:_}".replace("_", ".")
 avg_delay = round(d["all_flights"]['minutes_delay'].mean(), 1)
-avg_daily_flights = round(total_flights / d["all_flights"]['date'].nunique(), 0)
 airports = d["all_flights"]['airport_location'].nunique()
+avg_flights_count = int(round(d["volume"]["flight_count"].mean(), 0))
 
-print(metrics_dict)
+print(d["volume"])
 
 cols = st.columns(4)
 with cols[0]:
-    st.metric(label='Total flights in database', value=total_flights, border=True)
+    st.metric(label='Total flights in database', value=formatted_total, border=True)
 with cols[1]:
     st.metric(label='Avg Flight Delay', value=f'{avg_delay} minutes', border=True)
 with cols[2]:
     st.metric(label='Hub Reach', value=f'{airports} airports', border=True)
 with cols[3]:
-    st.metric(label='Flights per Day', value=f'Ø {avg_daily_flights}', border=True)
-
-
+    st.metric(label='Flights per Day', value=f'Ø {avg_flights_count}', border=True)
 
 # Data Quality
 
 cols = st.columns(len(metrics_dict)+1)
 
-tab_dashboard, tab_flights_airlines, tab_delays = st.tabs([
+tab_overview, tab_flights_airlines, tab_delays = st.tabs([
     "Overview",
     "Airlines and Flights",
     "Delays Analysis"
 ])
+
+with tab_overview:
+    render_overview(data=d)
+
+with tab_flights_airlines:
+    render_airlines(data=d)
+
 
 
 
