@@ -64,3 +64,8 @@ DATA_QUALITY = """
         FROM analytics.mart_data_quality
     """
 
+AIRPORT_RELATIONS = """
+        SELECT
+        *
+        FROM analytics.mart_airport_relations
+    """
