@@ -12,8 +12,8 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.markdown('''
-    This report visualizes information pulled from :yellow[Hamburg Airport Open API]  
-                and :yellow[open-meteo.com].
+    This report visualizes information pulled from :red[Hamburg Airport Open API]  
+                and :blue[open-meteo.com].
 ''')
 with col2:
     st.info(f"Date: {today} - Weather in Hamburg: {condition}")
