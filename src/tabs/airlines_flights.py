@@ -16,4 +16,17 @@ def render_airlines(data):
         sort='-number_of_flights'
     )
 
+    st.subheader('Flight stats by airline', text_alignment='center')
+    st.dataframe(data=data["airlines_stats"], column_config={
+        "airline_group": "Airline",
+        "number_of_flights": "Total Flights",
+        "share": "Share",
+        "tracked_flights": "Tracked Flights",
+        "cancelled_flights": "Cancelled Flights",
+        "avg_delay": "Average Delay",
+        "total_delay": "Total Delay"
+        
+    },
+    hide_index=True)
+
  
