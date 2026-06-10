@@ -1,7 +1,6 @@
 with flights_by_airline as (
     select
         airline_group,
-        sum(cancelled_fl) as cancelled_fligths,
         count(*) as number_of_flights,
         round(100 * count(*) / sum(count(*)) over (), 2) as share,
         count(case when flight_status = 'Completed' then 1 end) as tracked_flights,
