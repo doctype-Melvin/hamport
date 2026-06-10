@@ -57,8 +57,6 @@ avg_delay = round(d["all_flights"]['minutes_delay'].mean(), 1)
 airports = d["all_flights"]['airport_location'].nunique()
 avg_flights_count = int(round(d["volume"]["flight_count"].mean(), 0))
 
-print(d["volume"])
-
 cols = st.columns(4)
 with cols[0]:
     st.metric(label='Total flights in database', value=formatted_total, border=True)
